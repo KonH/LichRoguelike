@@ -1,5 +1,4 @@
-#ifndef CONSOLE_H_
-#define CONSOLE_H_
+#pragma once
 
 namespace Utils {
 
@@ -9,5 +8,3 @@ namespace Utils {
 	};
 
 }
-
-#endif

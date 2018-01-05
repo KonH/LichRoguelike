@@ -1,5 +1,4 @@
-#ifndef TESTRUNNER_H_
-#define TESTRUNNER_H_
+#pragma once
 
 #include <string>
 #include <set>
@@ -93,5 +92,3 @@ namespace Utils {
 	};
 
 }
-
-#endif
