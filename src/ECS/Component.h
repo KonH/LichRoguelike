@@ -5,6 +5,7 @@ using namespace std;
 namespace ECS {
 	class Component {
 	public:
+		virtual ~Component() = default;
 	};
 }
 

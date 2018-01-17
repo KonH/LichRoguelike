@@ -1,15 +1,12 @@
 #include "Entity.h"
 
 namespace ECS {
-	void Entity::AddComponent(const string& name, Component& comp) {
-		components[name] = comp;
-	}
-
-	bool Entity::HasComponent(const string& name) const {
-		return components.count(name) == 1;
+	void Entity::AddComponent(Component& comp) {
+		auto key = typeid(comp).name();
+		_components[key] = &comp;
 	}
 
 	size_t Entity::GetComponentCount() const {
-		return components.size();
+		return _components.size();
 	}
 }
