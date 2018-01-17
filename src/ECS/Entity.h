@@ -1,6 +1,5 @@
 #pragma once
 #include <map>
-#include <string>
 #include <memory>
 #include "Component.h"
 using namespace std;
@@ -21,15 +20,13 @@ namespace ECS {
 
 		size_t GetComponentCount() const;
 
-		// TODO: Use shared_ptr too?
 		template<class T>
-		T* GetComponent() const {
+		shared_ptr<T> GetComponent() const {
 			auto key = typeid(T).name();
 			if ( _components.count(key) == 1 ) {
-				auto basePointer = _components.at(key);
-				auto baseComp = basePointer.get();
-				T* derivedComp = dynamic_cast<T*>(baseComp);
-				return derivedComp;
+				auto basePtr = _components.at(key);
+				shared_ptr<T> derivedPtr = dynamic_pointer_cast<T>(basePtr);
+				return derivedPtr;
 			}
 			return nullptr;
 		}

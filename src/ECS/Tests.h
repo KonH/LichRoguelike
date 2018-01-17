@@ -40,12 +40,18 @@ namespace ECS {
 		Assert(e.HasComponent<Test::Text>());
 	}
 
+	void TestHasnt() {
+		Entity e;
+		Assert(!e.HasComponent<Test::Text>());
+		Assert(!e.GetComponent<Test::Text>().get());
+	}
+
 	void TestGet() {
 		Entity e;
 		Test::Text t("test");
 		e.AddComponent(t);
 		auto result = e.GetComponent<Test::Text>();
-		Assert(result);
+		Assert((bool)result);
 		AssertEqual(t.text, result->text);
 	}
 
@@ -53,12 +59,24 @@ namespace ECS {
 		e.AddComponent(make_shared<Test::Text>(text));
 	}
 
-	void TestHold() {
+	void TestHold1() {
 		Entity e;
-		AddComponentWithText(e, "TestHold");
+		AddComponentWithText(e, "TestHold1");
 		auto result = e.GetComponent<Test::Text>();
-		Assert(result);
-		AssertEqual(result->text, "TestHold");
+		Assert((bool)result);
+		AssertEqual(result->text, "TestHold1");
+	}
+
+	shared_ptr<Test::Text> GetComponentFromLocalEntity() {
+		Entity e;
+		AddComponentWithText(e, "TestHold2");
+		return e.GetComponent<Test::Text>();
+	}
+
+	void TestHold2() {
+		auto t = GetComponentFromLocalEntity();
+		Assert((bool)t);
+		AssertEqual(t->text, "TestHold2");
 	}
 
 	void TestAll() {
@@ -67,8 +85,10 @@ namespace ECS {
 		c.RunTest(TestAdd1, "Add1");
 		c.RunTest(TestAdd2, "Add2");
 		c.RunTest(TestHas, "Has");
+		c.RunTest(TestHasnt, "Hasn't");
 		c.RunTest(TestGet, "Get");
-		c.RunTest(TestHold, "Hold");
+		c.RunTest(TestHold1, "Hold1");
+		c.RunTest(TestHold2, "Hold2");
 	}
 }
 
