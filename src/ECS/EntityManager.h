@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <memory>
 #include "Entity.h"
+#include "Components/Position.h"
 using namespace std;
 
 namespace ECS {
