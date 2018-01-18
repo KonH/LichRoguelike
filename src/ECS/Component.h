@@ -3,8 +3,7 @@
 using namespace std;
 
 namespace ECS {
-	class Component {
-	public:
+	struct Component {
 		virtual ~Component() = default;
 	};
 }
