@@ -7,10 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7C1488DA200E574B0009D4AE /* LichRoguelike.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C1488CF200E574B0009D4AE /* LichRoguelike.cpp */; };
-		7C1488DB200E574B0009D4AE /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C1488D2200E574B0009D4AE /* Console.cpp */; };
-		7C1488DC200E574B0009D4AE /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C1488D6200E574B0009D4AE /* Entity.cpp */; };
-		7C1488DD200E574B0009D4AE /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C1488D7200E574B0009D4AE /* Component.cpp */; };
+		7C8B9A63201101FA00D87554 /* LichRoguelike.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8B9A57201101FA00D87554 /* LichRoguelike.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,15 +24,15 @@
 
 /* Begin PBXFileReference section */
 		7C1488C4200E57210009D4AE /* LichRoguelike */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LichRoguelike; sourceTree = BUILT_PRODUCTS_DIR; };
-		7C1488CF200E574B0009D4AE /* LichRoguelike.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LichRoguelike.cpp; sourceTree = "<group>"; };
-		7C1488D1200E574B0009D4AE /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
-		7C1488D2200E574B0009D4AE /* Console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Console.cpp; sourceTree = "<group>"; };
-		7C1488D3200E574B0009D4AE /* TestRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRunner.h; sourceTree = "<group>"; };
-		7C1488D5200E574B0009D4AE /* Tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests.h; sourceTree = "<group>"; };
-		7C1488D6200E574B0009D4AE /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
-		7C1488D7200E574B0009D4AE /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Component.cpp; sourceTree = "<group>"; };
-		7C1488D8200E574B0009D4AE /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
-		7C1488D9200E574B0009D4AE /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
+		7C8B9A57201101FA00D87554 /* LichRoguelike.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LichRoguelike.cpp; sourceTree = "<group>"; };
+		7C8B9A59201101FA00D87554 /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
+		7C8B9A5A201101FA00D87554 /* TestRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRunner.h; sourceTree = "<group>"; };
+		7C8B9A5C201101FA00D87554 /* EntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityManager.h; sourceTree = "<group>"; };
+		7C8B9A5D201101FA00D87554 /* Tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests.h; sourceTree = "<group>"; };
+		7C8B9A5F201101FA00D87554 /* View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View.h; sourceTree = "<group>"; };
+		7C8B9A60201101FA00D87554 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
+		7C8B9A61201101FA00D87554 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		7C8B9A62201101FA00D87554 /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +50,7 @@
 			isa = PBXGroup;
 			children = (
 				7C1488C5200E57210009D4AE /* Products */,
-				7C1488CE200E574B0009D4AE /* src */,
+				7C8B9A56201101FA00D87554 /* src */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,36 +62,44 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7C1488CE200E574B0009D4AE /* src */ = {
+		7C8B9A56201101FA00D87554 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				7C1488CF200E574B0009D4AE /* LichRoguelike.cpp */,
-				7C1488D0200E574B0009D4AE /* Utils */,
-				7C1488D4200E574B0009D4AE /* ECS */,
+				7C8B9A57201101FA00D87554 /* LichRoguelike.cpp */,
+				7C8B9A58201101FA00D87554 /* Utils */,
+				7C8B9A5B201101FA00D87554 /* ECS */,
 			);
 			path = src;
 			sourceTree = "<group>";
 		};
-		7C1488D0200E574B0009D4AE /* Utils */ = {
+		7C8B9A58201101FA00D87554 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				7C1488D1200E574B0009D4AE /* Console.h */,
-				7C1488D2200E574B0009D4AE /* Console.cpp */,
-				7C1488D3200E574B0009D4AE /* TestRunner.h */,
+				7C8B9A59201101FA00D87554 /* Console.h */,
+				7C8B9A5A201101FA00D87554 /* TestRunner.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		7C1488D4200E574B0009D4AE /* ECS */ = {
+		7C8B9A5B201101FA00D87554 /* ECS */ = {
 			isa = PBXGroup;
 			children = (
-				7C1488D5200E574B0009D4AE /* Tests.h */,
-				7C1488D6200E574B0009D4AE /* Entity.cpp */,
-				7C1488D7200E574B0009D4AE /* Component.cpp */,
-				7C1488D8200E574B0009D4AE /* Entity.h */,
-				7C1488D9200E574B0009D4AE /* Component.h */,
+				7C8B9A5C201101FA00D87554 /* EntityManager.h */,
+				7C8B9A5D201101FA00D87554 /* Tests.h */,
+				7C8B9A5E201101FA00D87554 /* Components */,
+				7C8B9A61201101FA00D87554 /* Entity.h */,
+				7C8B9A62201101FA00D87554 /* Component.h */,
 			);
 			path = ECS;
+			sourceTree = "<group>";
+		};
+		7C8B9A5E201101FA00D87554 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7C8B9A5F201101FA00D87554 /* View.h */,
+				7C8B9A60201101FA00D87554 /* Position.h */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,10 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C1488DA200E574B0009D4AE /* LichRoguelike.cpp in Sources */,
-				7C1488DD200E574B0009D4AE /* Component.cpp in Sources */,
-				7C1488DC200E574B0009D4AE /* Entity.cpp in Sources */,
-				7C1488DB200E574B0009D4AE /* Console.cpp in Sources */,
+				7C8B9A63201101FA00D87554 /* LichRoguelike.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
