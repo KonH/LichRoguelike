@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include "Components/Position.h"
+#include "Components/View.h"
 #include "Entity.h"
 #include "EntityManager.h"
 #include "../Utils/TestRunner.h"
@@ -52,7 +54,7 @@ namespace ECS {
 		Test::Text t("test");
 		e.AddComponent(t);
 		auto result = e.GetComponent<Test::Text>();
-		Assert((bool)result);
+		Assert((bool) result);
 		AssertEqual(t.text, result->text);
 	}
 
@@ -64,7 +66,7 @@ namespace ECS {
 		Entity e;
 		AddComponentWithText(e, "HoldComponent1");
 		auto result = e.GetComponent<Test::Text>();
-		Assert((bool)result);
+		Assert((bool) result);
 		AssertEqual(result->text, "HoldComponent1");
 	}
 
@@ -76,7 +78,7 @@ namespace ECS {
 
 	void HoldComponent2() {
 		auto t = GetComponentFromLocalEntity();
-		Assert((bool)t);
+		Assert((bool) t);
 		AssertEqual(t->text, "HoldComponent2");
 	}
 
@@ -102,7 +104,7 @@ namespace ECS {
 		EntityManager em;
 		AssertEqual(em.GetEntitesCount(), 0u);
 		auto entity = em.CreateEntity();
-		Assert((bool)entity);
+		Assert((bool) entity);
 		AssertEqual(em.GetEntitesCount(), 1u);
 	}
 
@@ -115,11 +117,35 @@ namespace ECS {
 		AssertEqual(em.GetEntitesCount(), 0u);
 	}
 
+	void FilterEntities() {
+		auto e1 = make_shared<Entity>();
+		auto e2 = make_shared<Entity>();
+		Position p(3, 5);
+		e2->AddComponent(make_shared<Position>(p));
+
+		EntityManager em;
+		em.AddEntity(e1);
+		em.AddEntity(e2);
+		AssertEqual(em.GetEntitesCount(), 2u);
+
+		auto result = em.Filter<Position>();
+		AssertEqual(result.size(), 1u);
+		auto firstItem = result[0];
+
+		shared_ptr<Entity> re;
+		shared_ptr<Position> rc;
+		tie(re,rc) = firstItem;
+		Assert((bool)re);
+		Assert((bool)rc);
+		AssertEqual(rc->X, p.X);
+	}
+
 	void TestEntityManager() {
 		TestRunner tr("EntityManager");
 		tr.RunTest(AddEntity, "Add");
 		tr.RunTest(CreateEntity, "Create");
 		tr.RunTest(RemoveEntity, "Remove");
+		tr.RunTest(FilterEntities, "Filter");
 	}
 
 	void TestAll() {

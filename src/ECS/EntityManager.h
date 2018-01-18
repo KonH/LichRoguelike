@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <tuple>
 #include <algorithm>
 #include <memory>
 #include "Entity.h"
@@ -29,6 +30,25 @@ namespace ECS {
 
 		size_t GetEntitesCount() const {
 			return _entities.size();
+		}
+
+
+		template<class T>
+		using ECTuple1 = vector<tuple<shared_ptr<Entity>, shared_ptr<T>>>;
+
+		template<class T>
+		ECTuple1<T> Filter() {
+			ECTuple1<T> result;
+			for ( auto& e : _entities ) {
+				if ( e ) {
+					auto c = e->GetComponent<T>();
+					if ( c ) {
+						auto t = make_tuple(e, c);
+						result.push_back(t);
+					}
+				}
+			}
+			return result;
 		}
 	private:
 		vector<shared_ptr<Entity>> _entities;
