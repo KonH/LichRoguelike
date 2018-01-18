@@ -50,6 +50,28 @@ namespace ECS {
 			}
 			return result;
 		}
+
+		template<class T1, class T2>
+		using ECTuple2 = vector<tuple<shared_ptr<Entity>, shared_ptr<T1>, shared_ptr<T2>>>;
+
+		template<class T1, class T2>
+		ECTuple2<T1, T2> Filter() {
+			ECTuple2<T1, T2> result;
+			for ( auto& e : _entities ) {
+				if ( e ) {
+					auto c1 = e->GetComponent<T1>();
+					auto c2 = e->GetComponent<T2>();
+					if ( c1 && c2 ) {
+						auto t = make_tuple(e, c1, c2);
+						result.push_back(t);
+					}
+				}
+			}
+			return result;
+		}
+
+		// TODO: Add more template magic
+
 	private:
 		vector<shared_ptr<Entity>> _entities;
 	};

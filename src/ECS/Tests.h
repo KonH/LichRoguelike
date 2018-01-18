@@ -117,7 +117,7 @@ namespace ECS {
 		AssertEqual(em.GetEntitesCount(), 0u);
 	}
 
-	void FilterEntities() {
+	void FilterEntities1() {
 		auto e1 = make_shared<Entity>();
 		auto e2 = make_shared<Entity>();
 		Position p(3, 5);
@@ -130,14 +130,42 @@ namespace ECS {
 
 		auto result = em.Filter<Position>();
 		AssertEqual(result.size(), 1u);
-		auto firstItem = result[0];
 
+		auto firstItem = result[0];
 		shared_ptr<Entity> re;
 		shared_ptr<Position> rc;
-		tie(re,rc) = firstItem;
-		Assert((bool)re);
-		Assert((bool)rc);
+		tie(re, rc) = firstItem;
+		Assert((bool) re);
+		Assert((bool) rc);
 		AssertEqual(rc->X, p.X);
+	}
+
+	void FilterEntities2() {
+		auto e1 = make_shared<Entity>();
+		auto e2 = make_shared<Entity>();
+		Position p(3, 5);
+		View v('x');
+		e2->AddComponent(p);
+		e2->AddComponent(v);
+
+		EntityManager em;
+		em.AddEntity(e1);
+		em.AddEntity(e2);
+		AssertEqual(em.GetEntitesCount(), 2u);
+
+		auto result = em.Filter<Position, View>();
+		AssertEqual(result.size(), 1u);
+
+		auto firstItem = result[0];
+		shared_ptr<Entity> re;
+		shared_ptr<Position> rp;
+		shared_ptr<View> rv;
+		tie(re, rp, rv) = firstItem;
+		Assert((bool) re);
+		Assert((bool) rp);
+		AssertEqual(rp->X, p.X);
+		Assert((bool) rv);
+		AssertEqual(rv->Content, v.Content);
 	}
 
 	void TestEntityManager() {
@@ -145,7 +173,8 @@ namespace ECS {
 		tr.RunTest(AddEntity, "Add");
 		tr.RunTest(CreateEntity, "Create");
 		tr.RunTest(RemoveEntity, "Remove");
-		tr.RunTest(FilterEntities, "Filter");
+		tr.RunTest(FilterEntities1, "Filter1");
+		tr.RunTest(FilterEntities2, "Filter2");
 	}
 
 	void TestAll() {
