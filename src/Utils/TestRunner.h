@@ -55,7 +55,7 @@ namespace Utils {
 	}
 
 	template<class T, class U>
-	void AssertEqual(const T& t, const U& u, const string& hint = "") {
+	void AssertEqual(const T& t, const U& u, const string& hint) {
 		if ( t != u ) {
 			ostringstream os;
 			os << "Assertion failed: " << t << " != " << u;
@@ -64,6 +64,11 @@ namespace Utils {
 			}
 			throw runtime_error(os.str());
 		}
+	}
+
+	template<class T, class U>
+	void AssertEqual(const T& t, const U& u) {
+		AssertEqual(t, u, "");
 	}
 
 	void Assert(bool b, const string& hint = "") {
