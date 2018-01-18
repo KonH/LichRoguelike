@@ -18,7 +18,9 @@ namespace ECS {
 			_components[key] = comp;
 		}
 
-		size_t GetComponentCount() const;
+		size_t GetComponentCount() const {
+			return _components.size();
+		}
 
 		template<class T>
 		shared_ptr<T> GetComponent() const {
