@@ -32,7 +32,6 @@ namespace ECS {
 			return _entities.size();
 		}
 
-
 		template<class T>
 		using ECTuple1 = vector<tuple<shared_ptr<Entity>, shared_ptr<T>>>;
 
@@ -72,6 +71,24 @@ namespace ECS {
 
 		// TODO: Add more template magic
 
+		void SortEntities() {
+			sort(begin(_entities), end(_entities), [](shared_ptr<Entity> x, shared_ptr<Entity> y) {
+				if ( x && y ) {
+					auto xp = x->GetComponent<Position>();
+					auto yp = y->GetComponent<Position>();
+					if ( xp && yp ) {
+						return *xp < *yp;
+					}
+				}
+				return true;
+			});
+		}
+
+		void SortIfRequired(shared_ptr<Entity> e) {
+			if ( e && e->HasComponent<Position>() ) {
+				SortEntities();
+			}
+		}
 	private:
 		vector<shared_ptr<Entity>> _entities;
 	};

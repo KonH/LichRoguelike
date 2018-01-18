@@ -168,13 +168,61 @@ namespace ECS {
 		AssertEqual(rv->Content, v.Content);
 	}
 
+	void ComparePostions() {
+		// X 0 1 .. Xn
+		// Y
+		// 0
+		// 1
+		// ..
+		// Yn
+		Position x1(0, 1), y1(0, 0);
+		Assert(x1 > y1, "#1");
+		Position x2(3, 0), y2(1, 0);
+		Assert(x2 > y2, "#2");
+		Position x3(0, 0), y3(0, 2);
+		Assert(x3 < y3, "#3");
+		Position x4(-1, 0), y4(1, 0);
+		Assert(x4 < y4, "#4");
+		vector<Position> expected =
+		        { { -1, -1 }, { 0, 0 }, { 1, 0 }, { 0, 1 }, { 1, 1 }, { 10, 1 }, { 1, 10 } };
+		vector<Position> input =
+		        { { 1, 1 }, { 1, 10 }, { 1, 0 }, { 0, 1 }, { -1, -1 }, { 10, 1 }, { 0, 0 } };
+		sort(begin(input), end(input));
+		AssertEqual(input, expected, "#5");
+	}
+
+	void SortEntities() {
+		EntityManager em;
+		Position p0(0, 0);
+		Position p1(2, 0);
+		Position p2(0, 1);
+		em.CreateEntity()->AddComponent(p2);
+		em.CreateEntity()->AddComponent(p0);
+		em.CreateEntity()->AddComponent(p1);
+
+		em.SortEntities();
+
+		auto result = em.Filter<Position>();
+		AssertEqual(result.size(), 3u);
+
+		shared_ptr<Position> rp0, rp1, rp2;
+		tie(ignore, rp0) = result[0];
+		AssertEqual(p0, *rp0);
+		tie(ignore, rp1) = result[1];
+		AssertEqual(p1, *rp1);
+		tie(ignore, rp2) = result[2];
+		AssertEqual(p2, *rp2);
+	}
+
 	void TestEntityManager() {
 		TestRunner tr("EntityManager");
 		tr.RunTest(AddEntity, "Add");
 		tr.RunTest(CreateEntity, "Create");
 		tr.RunTest(RemoveEntity, "Remove");
+		tr.RunTest(ComparePostions, "Compare");
 		tr.RunTest(FilterEntities1, "Filter1");
 		tr.RunTest(FilterEntities2, "Filter2");
+		tr.RunTest(SortEntities, "Sort");
 	}
 
 	void TestAll() {
