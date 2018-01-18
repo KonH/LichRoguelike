@@ -1,7 +1,11 @@
 #pragma once
+
 #include <map>
+#include <string>
 #include <memory>
+
 #include "Component.h"
+
 using namespace std;
 
 namespace ECS {

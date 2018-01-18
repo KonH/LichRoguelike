@@ -1,12 +1,15 @@
 #pragma once
+
 #include <string>
 #include <vector>
 #include <memory>
-#include "Components/Position.h"
-#include "Components/View.h"
+
+#include "../Utils/TestRunner.h"
 #include "Entity.h"
 #include "EntityManager.h"
-#include "../Utils/TestRunner.h"
+#include "Components/Position.h"
+#include "Components/View.h"
+
 using namespace std;
 using namespace Utils;
 
