@@ -20,16 +20,26 @@ namespace ECS {
 		void Update(shared_ptr<EntityManager> entities) override {
 			entities->SortEntities();
 			auto input = entities->Filter<Position, View>();
+			bool started = false;
+			int x0 = 0, y0 = 0;
 			int x = 0, y = 0;
 			for ( auto item : input ) {
 				shared_ptr<Position> pos;
 				shared_ptr<View> view;
 				tie(ignore, pos, view) = item;
 
+				if ( !started ) {
+					x0 = pos->X;
+					y0 = pos->Y;
+					x = x0;
+					y = y0;
+					started = true;
+				}
+
 				while ( y < pos->Y ) {
 					NextLine();
 					y++;
-					x = 0;
+					x = x0;
 				}
 				while ( x < pos->X ) {
 					x++;

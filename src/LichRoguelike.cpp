@@ -25,6 +25,10 @@ int main() {
 	e2->AddComponent(View('z'));
 	e2->AddComponent(Position(3, 3));
 
+	auto eN = entities->CreateEntity();
+	eN->AddComponent(View('w'));
+	eN->AddComponent(Position(-1, -1));
+
 	Engine engine(entities);
 	auto render = make_shared<RenderSystem>(cout);
 	engine.AddSystem(render);
