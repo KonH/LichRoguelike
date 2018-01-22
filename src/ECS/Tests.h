@@ -3,12 +3,14 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <sstream>
 
 #include "../Utils/TestRunner.h"
 #include "Entity.h"
 #include "EntityManager.h"
 #include "Components/Position.h"
 #include "Components/View.h"
+#include "Systems/RenderSystem.h"
 
 using namespace std;
 using namespace Utils;
@@ -228,10 +230,46 @@ namespace ECS {
 		tr.RunTest(SortEntities, "Sort");
 	}
 
+	void Render() {
+		auto entities = make_shared<EntityManager>();
+
+		auto e0 = entities->CreateEntity();
+		e0->AddComponent(View('x'));
+		e0->AddComponent(Position(0, 1));
+
+		auto e1 = entities->CreateEntity();
+		e1->AddComponent(View('y'));
+		e1->AddComponent(Position(2, 0));
+
+		auto e2 = entities->CreateEntity();
+		e2->AddComponent(View('z'));
+		e2->AddComponent(Position(3, 3));
+
+		ostringstream actual;
+		auto render = make_shared<RenderSystem>(actual, '_', ';');
+		render->Update(entities);
+
+		ostringstream expected;
+		expected << " _ _ y;";
+		expected << " x;";
+		expected << ";";
+		expected << " _ _ _ z;";
+
+		string actualStr = actual.str();
+		string expectedStr = expected.str();
+		AssertEqual("\"" + actualStr + "\"", "\"" + expectedStr + "\"");
+	}
+
+	void TestSystems() {
+		TestRunner tr("Systems");
+		tr.RunTest(Render, "Render");
+	}
+
 	void TestAll() {
 		cerr << "Unit tests:" << endl;
 		TestComponent();
 		TestEntityManager();
+		TestSystems();
 	}
 }
 
