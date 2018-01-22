@@ -246,14 +246,14 @@ namespace ECS {
 		e2->AddComponent(Position(3, 3));
 
 		ostringstream actual;
-		auto render = make_shared<RenderSystem>(actual, '_', ';');
+		auto render = make_shared<RenderSystem>(4, 4, actual, '_', ';');
 		render->Update(entities);
 
 		ostringstream expected;
-		expected << " _ _ y;";
-		expected << " x;";
-		expected << ";";
-		expected << " _ _ _ z;";
+		expected << "_ _ y _ ;";
+		expected << "x _ _ _ ;";
+		expected << "_ _ _ _ ;";
+		expected << "_ _ _ z ;";
 
 		string actualStr = actual.str();
 		string expectedStr = expected.str();

@@ -7,6 +7,8 @@
 
 #include "Entity.h"
 #include "Components/Position.h"
+#include "Components/View.h"
+#include "Components/Blocker.h"
 
 using namespace std;
 
@@ -88,11 +90,28 @@ namespace ECS {
 			});
 		}
 
-		void SortIfRequired(shared_ptr<Entity> e) {
-			if ( e && e->HasComponent<Position>() ) {
-				SortEntities();
+		// Temp
+		vector<shared_ptr<Entity>> GetEntitiesAt(int x, int y) {
+			vector<shared_ptr<Entity>> result;
+			auto input = Filter<Position>();
+			for(auto t : input ){
+				shared_ptr<Entity> entity;
+				shared_ptr<Position> pos;
+				tie(entity, pos) = t;
+				if ( (pos->X == x) && (pos->Y == y) ) {
+					result.push_back(entity);
+				}
 			}
+			return result;
 		}
+
+		void AddWall(int x, int y) {
+			auto entity = CreateEntity();
+			entity->AddComponent(Position(x, y));
+			entity->AddComponent(Blocker());
+			entity->AddComponent(View('+'));
+		}
+
 	private:
 		vector<shared_ptr<Entity>> _entities;
 	};
