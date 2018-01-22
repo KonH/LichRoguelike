@@ -173,7 +173,7 @@ namespace ECS {
 		AssertEqual(rv->Content, v.Content);
 	}
 
-	void ComparePostions() {
+	void ComparePositions() {
 		// X 0 1 .. Xn
 		// Y
 		// 0
@@ -224,7 +224,7 @@ namespace ECS {
 		tr.RunTest(AddEntity, "Add");
 		tr.RunTest(CreateEntity, "Create");
 		tr.RunTest(RemoveEntity, "Remove");
-		tr.RunTest(ComparePostions, "Compare");
+		tr.RunTest(ComparePositions, "Compare");
 		tr.RunTest(FilterEntities1, "Filter1");
 		tr.RunTest(FilterEntities2, "Filter2");
 		tr.RunTest(SortEntities, "Sort");
