@@ -3,12 +3,15 @@
 #include <iostream>
 #include <memory>
 
+#include "../../Utils/Console.h"
+
 #include "../EntityManager.h"
 #include "../System.h"
 #include "../Components/View.h"
 #include "../Components/Position.h"
 
 using namespace std;
+using namespace Utils;
 
 namespace ECS {
 	class RenderSystem: public System {
@@ -26,6 +29,8 @@ namespace ECS {
 		}
 
 		void Update(shared_ptr<EntityManager> entities) override {
+			Clear();
+
 			entities->SortEntities();
 			auto input = entities->Filter<Position, View>();
 			int x0 = 0, y0 = 0;
@@ -66,7 +71,12 @@ namespace ECS {
 			}
 		}
 
+		void Clear() {
+			_console.Clear();
+		}
+
 	private:
+		Console _console;
 		ostream& _out;
 		const char _space;
 		const char _nextLine;
