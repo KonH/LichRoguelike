@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdlib>
+#include <conio.h>
 
 using namespace std;
 
@@ -14,6 +15,10 @@ namespace Utils {
 #else
 			system("clear");
 #endif
+		}
+
+		char GetChar() {
+			return getch();
 		}
 	};
 
