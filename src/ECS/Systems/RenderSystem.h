@@ -20,8 +20,7 @@ namespace ECS {
 				_width(w), _height(h), _out(outStream), _space(' '), _nextLine(' ') {
 		}
 
-		RenderSystem(int w, int h, ostream& outStream, char space,
-		        char nextLine) :
+		RenderSystem(int w, int h, ostream& outStream, char space, char nextLine) :
 				_width(w), _height(h), _out(outStream), _space(space), _nextLine(nextLine) {
 		}
 
