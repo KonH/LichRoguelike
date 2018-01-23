@@ -11,7 +11,7 @@
 using namespace std;
 
 namespace ECS {
-	class MoveSystem: public System {
+	class CollisionSystem: public System {
 	public:
 		void Update(shared_ptr<EntityManager> entities) override {
 			auto input = entities->Filter<Movable, Position>();
@@ -20,8 +20,12 @@ namespace ECS {
 				shared_ptr<Position> pos;
 				tie(ignore, mov, pos) = item;
 				auto newPos = entities->GetNextPosition(pos->X, pos->Y, mov->Direction);
-				pos->X = newPos.X;
-				pos->Y = newPos.Y;
+				auto destEntities = entities->GetEntitiesAt(newPos.X, newPos.Y);
+				for ( auto dest : destEntities ) {
+					if ( dest->HasComponent<Blocker>() ) {
+						mov->Direction = MoveDirection::None;
+					}
+				}
 			}
 		}
 	};

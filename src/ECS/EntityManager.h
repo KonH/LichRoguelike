@@ -9,6 +9,7 @@
 #include "Components/Position.h"
 #include "Components/View.h"
 #include "Components/Blocker.h"
+#include "Components/Movable.h"
 
 using namespace std;
 
@@ -103,6 +104,21 @@ namespace ECS {
 				}
 			}
 			return result;
+		}
+
+		Position GetNextPosition(int x, int y, MoveDirection dir) {
+			switch ( dir ) {
+			case MoveDirection::Up:
+				return {x, y-1};
+			case MoveDirection::Down:
+				return {x, y+1};
+			case MoveDirection::Left:
+				return {x-1,y};
+			case MoveDirection::Right:
+				return {x+1, y};
+			default:
+				return {x, y};
+			}
 		}
 
 		void AddWall(int x, int y) {
