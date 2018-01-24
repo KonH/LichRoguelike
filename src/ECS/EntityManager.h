@@ -91,19 +91,20 @@ namespace ECS {
 			});
 		}
 
-		// Temp
-		vector<shared_ptr<Entity>> GetEntitiesAt(int x, int y) {
-			vector<shared_ptr<Entity>> result;
+		void UpdatePositionCache() {
+			_positionCache.clear();
 			auto input = Filter<Position>();
-			for(auto t : input ){
+			for ( auto t : input ) {
 				shared_ptr<Entity> entity;
 				shared_ptr<Position> pos;
 				tie(entity, pos) = t;
-				if ( (pos->X == x) && (pos->Y == y) ) {
-					result.push_back(entity);
-				}
+				_positionCache[*pos].push_back(entity);
+
 			}
-			return result;
+		}
+
+		vector<shared_ptr<Entity>> GetEntitiesAt(Position targetPos) {
+			return _positionCache[targetPos];
 		}
 
 		Position GetNextPosition(int x, int y, MoveDirection dir) {
@@ -130,6 +131,7 @@ namespace ECS {
 
 	private:
 		vector<shared_ptr<Entity>> _entities;
+		map<Position, vector<shared_ptr<Entity>>> _positionCache;
 	};
 }
 

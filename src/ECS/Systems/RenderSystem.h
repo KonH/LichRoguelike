@@ -25,10 +25,11 @@ namespace ECS {
 		}
 
 		void Update(shared_ptr<EntityManager> entities) override {
+			entities->UpdatePositionCache();
 			_console.Clear();
 			for ( int y = 0; y < _height; ++y ) {
 				for ( int x = 0; x < _width; ++x ) {
-					auto input = entities->GetEntitiesAt(x, y);
+					auto input = entities->GetEntitiesAt(Position(x, y));
 					if ( input.empty() ) {
 						_out << _space;
 					} else {
