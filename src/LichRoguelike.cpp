@@ -6,13 +6,14 @@
 #include "ECS/Systems/PlayerMoveSystem.h"
 #include "ECS/Systems/MoveSystem.h"
 #include "ECS/Systems/RenderSystem.h"
+#include "ECS/Systems/ClearScreenSystem.h"
 #include "ECS/Systems/CollisionSystem.h"
 
 using namespace ECS;
 using namespace std;
 
 int main() {
-	TestAll();
+	ECS::TestAll();
 
 	auto entities = make_shared<EntityManager>();
 
@@ -34,6 +35,7 @@ int main() {
 
 	Engine engine(entities);
 
+	engine.AddSystem(make_shared<ClearScreenSystem>());
 	engine.AddSystem(make_shared<RenderSystem>(11, 11, cout));
 	engine.AddDebugger(make_shared<EngineDebugger>(cerr));
 	engine.AddSystem(make_shared<PlayerMoveSystem>());
