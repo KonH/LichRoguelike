@@ -40,11 +40,11 @@ namespace ECS {
 		}
 
 		template<class T>
-		using ECTuple1 = vector<tuple<shared_ptr<Entity>, shared_ptr<T>>>;
+		using ECTuple1Vector = vector<tuple<shared_ptr<Entity>, shared_ptr<T>>>;
 
 		template<class T>
-		ECTuple1<T> Filter() {
-			ECTuple1<T> result;
+		ECTuple1Vector<T> Filter() {
+			ECTuple1Vector<T> result;
 			for ( auto& e : _entities ) {
 				if ( e ) {
 					auto c = e->GetComponent<T>();
@@ -58,17 +58,37 @@ namespace ECS {
 		}
 
 		template<class T1, class T2>
-		using ECTuple2 = vector<tuple<shared_ptr<Entity>, shared_ptr<T1>, shared_ptr<T2>>>;
+		using ECTuple2Vector = vector<tuple<shared_ptr<Entity>, shared_ptr<T1>, shared_ptr<T2>>>;
 
 		template<class T1, class T2>
-		ECTuple2<T1, T2> Filter() {
-			ECTuple2<T1, T2> result;
+		ECTuple2Vector<T1, T2> Filter() {
+			ECTuple2Vector<T1, T2> result;
 			for ( auto& e : _entities ) {
 				if ( e ) {
 					auto c1 = e->GetComponent<T1>();
 					auto c2 = e->GetComponent<T2>();
 					if ( c1 && c2 ) {
 						auto t = make_tuple(e, c1, c2);
+						result.push_back(t);
+					}
+				}
+			}
+			return result;
+		}
+
+		template<class T1, class T2, class T3>
+		using ECTuple3Vector = vector<tuple<shared_ptr<Entity>, shared_ptr<T1>, shared_ptr<T2>, shared_ptr<T3>>>;
+
+		template<class T1, class T2, class T3>
+		ECTuple3Vector<T1, T2, T3> Filter() {
+			ECTuple3Vector<T1, T2, T3> result;
+			for ( auto& e : _entities ) {
+				if ( e ) {
+					auto c1 = e->GetComponent<T1>();
+					auto c2 = e->GetComponent<T2>();
+					auto c3 = e->GetComponent<T3>();
+					if ( c1 && c2 && c3) {
+						auto t = make_tuple(e, c1, c2, c3);
 						result.push_back(t);
 					}
 				}
@@ -122,11 +142,12 @@ namespace ECS {
 			}
 		}
 
-		void AddWall(int x, int y) {
+		shared_ptr<Entity> AddWall(int x, int y, char c) {
 			auto entity = CreateEntity();
 			entity->AddComponent(Position(x, y));
 			entity->AddComponent(Blocker());
-			entity->AddComponent(View('+'));
+			entity->AddComponent(View(c));
+			return entity;
 		}
 
 	private:

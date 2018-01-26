@@ -17,13 +17,20 @@ namespace ECS {
 		}
 
 		void Update(shared_ptr<EntityManager> entities) override {
-			entities->SortEntities();
+			// TODO: Fix
+			//entities->SortEntities();
 			auto input = entities->Filter<Position>();
 			int y = 0;
 			for ( auto item : input ) {
+				shared_ptr<Entity> e;
 				shared_ptr<Position> pos;
-				tie(ignore, pos) = item;
-				_out << *pos << "; ";
+				tie(e, pos) = item;
+				_out << *pos << " {";
+				auto comps = e->GetComponents();
+				for ( auto c : comps ) {
+					_out << typeid(*c).name() << ";";
+				}
+				_out << "} ";
 				if ( pos->Y > y ) {
 					y = pos->Y;
 					_out << endl;

@@ -22,6 +22,14 @@ namespace ECS {
 			_components[key] = comp;
 		}
 
+		vector<shared_ptr<Component>> GetComponents() {
+			vector<shared_ptr<Component>> result;
+			for ( auto pair : _components ) {
+				result.push_back(pair.second);
+			}
+			return result;
+		}
+
 		size_t GetComponentCount() const {
 			return _components.size();
 		}
