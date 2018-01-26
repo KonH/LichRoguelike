@@ -7,8 +7,12 @@
 using namespace ECS;
 
 namespace Game {
-	struct BonesContainer : Component {
+	struct BonesContainer: Component {
 		int Count = 0;
+
+		BonesContainer() {
+			Name = "BonesContainer";
+		}
 	};
 }
 

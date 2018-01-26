@@ -9,8 +9,8 @@ namespace ECS {
 		int X;
 		int Y;
 
-		Position(int x, int y) :
-				Component() {
+		Position(int x, int y) {
+			Name = "Position";
 			X = x;
 			Y = y;
 		}
@@ -32,18 +32,18 @@ namespace ECS {
 	}
 
 	bool operator >(const Position& a, const Position& b) {
-		if (a.Y > b.Y) {
+		if ( a.Y > b.Y ) {
 			return true;
-		} else if (a.Y == b.Y) {
+		} else if ( a.Y == b.Y ) {
 			return a.X > b.X;
 		}
 		return false;
 	}
 
 	bool operator <(const Position& a, const Position& b) {
-		if (a.Y < b.Y) {
+		if ( a.Y < b.Y ) {
 			return true;
-		} else if (a.Y == b.Y) {
+		} else if ( a.Y == b.Y ) {
 			return a.X < b.X;
 		}
 		return false;

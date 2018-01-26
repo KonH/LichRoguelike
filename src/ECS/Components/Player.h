@@ -4,6 +4,10 @@
 
 namespace ECS {
 	struct Player: Component {
+
+		Player() {
+			Name = "Player";
+		}
 	};
 }
 

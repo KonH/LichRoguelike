@@ -17,8 +17,7 @@ namespace ECS {
 		}
 
 		void Update(shared_ptr<EntityManager> entities) override {
-			// TODO: Fix
-			//entities->SortEntities();
+			entities->SortEntities();
 			auto input = entities->Filter<Position>();
 			int y = 0;
 			for ( auto item : input ) {
@@ -28,7 +27,7 @@ namespace ECS {
 				_out << *pos << " {";
 				auto comps = e->GetComponents();
 				for ( auto c : comps ) {
-					_out << typeid(*c).name() << ";";
+					_out << c->Name << ";";
 				}
 				_out << "} ";
 				if ( pos->Y > y ) {

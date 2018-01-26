@@ -6,8 +6,9 @@ namespace ECS {
 	struct View: Component {
 		char Content;
 
-		View(char c):Component() {
-			Content = c;
+		View(char c) :
+				Content(c) {
+			Name = "View";
 		}
 	};
 }

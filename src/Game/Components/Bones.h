@@ -12,6 +12,7 @@ namespace Game {
 
 		Bones(int count) :
 				Count(count) {
+			Name = "Bones";
 		}
 	};
 }

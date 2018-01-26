@@ -2,5 +2,9 @@
 
 namespace ECS {
 	struct Blocker: Component {
+
+		Blocker() {
+			Name = "Blocker";
+		}
 	};
 }
