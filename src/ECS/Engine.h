@@ -5,7 +5,7 @@
 
 #include "EntityManager.h"
 #include "System.h"
-#include "EngineDebugger.h"
+#include "Systems/EngineDebugger.h"
 
 using namespace std;
 

@@ -1,12 +1,11 @@
 #include <iostream>
 
 #include "ECS/Engine.h"
-#include "ECS/EngineDebugger.h"
 #include "ECS/Tests.h"
+#include "ECS/Systems/EngineDebugger.h"
 #include "ECS/Systems/PlayerMoveSystem.h"
 #include "ECS/Systems/MoveSystem.h"
 #include "ECS/Systems/RenderSystem.h"
-#include "ECS/Systems/DebugSystem.h"
 #include "ECS/Systems/CollisionSystem.h"
 
 using namespace ECS;
@@ -36,7 +35,6 @@ int main() {
 	Engine engine(entities);
 
 	engine.AddSystem(make_shared<RenderSystem>(11, 11, cout));
-	engine.AddSystem(make_shared<DebugSystem>(cout));
 	engine.AddDebugger(make_shared<EngineDebugger>(cerr));
 	engine.AddSystem(make_shared<PlayerMoveSystem>());
 	engine.AddSystem(make_shared<CollisionSystem>());
